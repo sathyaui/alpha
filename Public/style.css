@@ -100,7 +100,7 @@ button:focus {
     display: flex;
     -webkit-flex-flow: wrap column;
     flex-flow: wrap column;
-    max-height: 350px; 
+    max-height: 450px; 
     margin: 0px;
     padding: 20px 0px;
 }

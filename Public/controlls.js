@@ -45,6 +45,7 @@ var options = {
 
 $('.column-count').each(function(){
     var totalLength = $(this).find('.form-group').length;
+    console.log(totalLength);
     $(this).find('form').css('width', 300*(Math.ceil(totalLength/5)));
 });
 
