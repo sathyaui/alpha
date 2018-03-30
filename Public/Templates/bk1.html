@@ -1,0 +1,396 @@
+<html>
+
+<head>
+    <title>Sample DashBoard</title>
+    <link href="https://fonts.googleapis.com/css?family=Titillium+Web:300,400,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.3.1/web-animations.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/muuri/0.5.3/muuri.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <!-- Include Date Range Picker -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+    <style type="text/css">
+    body {
+        padding: 30px 0px;
+        font-family: 'Titillium Web', sans-serif;
+        font-size: 14px;
+        line-height: 1.1456;
+    }
+
+    .grid {
+        position: relative;
+    }
+
+    .item {
+        background-color: white;
+        display: block;
+        position: absolute;
+        height: 300px;
+        z-index: 1;
+    }
+
+    .chartArea {
+        padding: 0px 20px 20px;
+        border: 1px solid #f9f5f5;
+        border-radius: 3px;
+    }
+
+    .chartArea h6 {
+        margin-bottom: 0px;
+    }
+
+    .chartHeader {
+        padding: 10px 5px;
+        border-bottom: 1px solid #f9f5f5;
+        margin: 0px -20px 20px;
+    }
+
+    .chartHeader button {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+    }
+
+    .item.muuri-item-dragging {
+        z-index: 3;
+    }
+
+    .item.muuri-item-releasing {
+        z-index: 2;
+    }
+
+    .item.muuri-item-hidden {
+        z-index: 0;
+    }
+
+    #popupContainer {
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        bottom: 0px;
+        right: 0px;
+        z-index: 100;
+        background-color: rgba(0, 0, 0, 0.7);
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .buttonRow {
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #f9f5f5;
+    }
+    button:focus {
+        outline: none;
+    }
+    .hiddenDateField {
+        opacity: 0;
+        visibility: hidden;
+        position: absolute;
+    }
+    .column-count {
+        padding-left: 0px;
+        padding-right: 0px;
+        text-align: center;
+    }
+    .modal-content {
+        background-color: transparent;
+        border:none;
+    }
+    .column-count > div {
+        background-color: white;
+        text-align: left;
+        display: inline-block;
+    }
+    .column-count form {
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-flow: wrap column;
+        flex-flow: wrap column;
+        max-height: 350px; 
+        margin: 0px;
+        padding: 20px 0px;
+    }
+    .form-group:last-child {
+        margin-bottom: 0px;
+    }
+    .column-count form label {
+        font-size: 12px;
+        text-transform: uppercase;
+        font-weight: 600;
+    }
+    .column-count .form-group {
+        padding: 0 15px;
+        width: 300px;
+    }
+    .modal-dialog {
+        max-width: initial;
+    }
+    .modal-header {
+        padding: 8px 15px;
+    }
+    .modal-footer {
+        padding: 15px;
+    }
+    .modal-header h5 {
+        font-size: 16px;
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+    .btn {
+        font-size: 14px;
+        text-transform: uppercase;
+        font-weight: 600;
+    }
+    .form-control {
+        font-size: 14px;
+    }
+    .modal-header .close {
+        padding: 5px;
+        margin: -10px -5px 0px;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="buttonRow">
+        <div class="container text-right">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-light" data-toggle="modal" data-target="#widgetModal">
+                Add widget
+            </button>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row grid"></div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="widgetModal" tabindex="-1" role="dialog" aria-labelledby="widgetModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="column-count">
+                    <div>
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="widgetModalLabel">Widget</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form>
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" class="form-control" id="name" placeholder="Enter name">
+                            </div>
+                            <div class="form-group">
+                                <label for="chooseChart">Choose type</label>
+                                <select class="form-control" id="chooseChart">
+                                    <option>bar</option>
+                                    <option>line</option>
+                                    <option>polarArea</option>
+                                    <option>radar</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="datarange">Date</label>
+                                <input type="text" class="form-control" id="datarange" name="daterange" placeholder="Choose date range">
+                            </div>
+                        </form>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" id="appendData">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="updateWidgetModal" tabindex="-1" role="dialog" aria-labelledby="updateWidgetModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="column-count">
+                    <div>
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="updateWidgetModalLabel">Widget</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form>
+                            <div class="form-group">
+                                <label for="updateName">Name</label>
+                                <input type="text" class="form-control" id="updateName" placeholder="Enter name">
+                            </div>
+                            <div class="form-group">
+                                <label for="updateChart">Choose type</label>
+                                <select class="form-control" id="updateChart">
+                                    <option>bar</option>
+                                    <option>line</option>
+                                    <option>polarArea</option>
+                                    <option>radar</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="datarange">Date</label>
+                                <input type="text" class="form-control" id="datarangeUpdate" name="daterange" placeholder="Choose date range">
+                            </div>
+                        </form>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" id="updateWidget">Update</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    var allItems = [
+        {
+            url:[10, 15, 22, 12],
+            keyword:['a', 'b', 'c', 'd'],
+            createdAt:"03/01/2018"
+        },
+        {
+            url:[10, 19, 2, 12],
+            keyword:['a', 'b', 'c', 'd'],
+            createdAt:"03/03/2018"
+        },
+        {
+            url:[10, 15, 22],
+            keyword:['a', 'b', 'c', 'd'],
+            createdAt:"03/07/2018"
+        }
+    ];
+    $('input[name="daterange"]').daterangepicker();
+    //var dataArr = <%= chart.dataArr1 %>;
+    var options = {
+        legend: {
+            display: false
+        },
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    };
+
+    $('.column-count').each(function(){
+        var totalLength = $(this).find('.form-group').length;
+        $(this).find('form').css('width', 300*(Math.ceil(totalLength/5)));
+    });
+
+    var styleOptions = {
+        label: 'Total leads',
+        backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)'
+        ],
+        borderColor: [
+            'rgba(255,99,132,1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)'
+        ],
+        borderWidth: 1
+    };
+
+    function chartDataOptions(datalabels, dataArr) {
+        return {
+            //labels: <%- chart.lable1 %>,
+            labels:datalabels,
+            datasets: [{
+                data: dataArr,
+                styleOptions
+            }]
+        }
+    }
+
+    function chartRendering(id, type, dateObject) {
+        var result = allItems.filter(function(el){
+            var time = new Date(el.createdAt).getTime();
+            return (dateObject.startDate <= time && time <= dateObject.endDate);
+        });
+        var labels = [];
+        var dataArr = [];
+        result.map(function(el) {
+            labels = labels.concat(el.keyword);
+            dataArr = dataArr.concat(el.url);
+        });
+        var ctx = document.getElementById(id).getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: type,
+            data: chartDataOptions(labels, dataArr),
+            options: options
+        });
+    }
+
+    function splitDate(dateVal) {
+        var selectedDate = dateVal.split('-');
+        var dateObject = {
+            startDate:new Date(selectedDate[0].trim()).getTime(),
+            endDate:new Date(selectedDate[1].trim()).getTime()
+        };
+        return dateObject;
+    }
+
+    $('#appendData').on('click', function() {
+        var itemLength = $('.item').length;
+        if (itemLength === 0) {
+            itemLength = $('.item').length + 1;
+        } else {
+            itemLength = parseInt($('.grid .item').last().attr('data-id')) + 1;
+        }
+        var chartElm = '<canvas id="myChart' + itemLength + '" width="400" height="300"></canvas>';
+        var htmlContent = '<div class="col-4 item" data-id="' + itemLength + '" data-type="' + $('#chooseChart').val() + '" id="item' + itemLength + '"><span class="hiddenDateField">' + $('#datarange').val() + '</span><div class="chartArea"><div class="chartHeader row"><div class="col-8"><h6>' + $('#name').val() + '</h6></div><div class="col-4 text-right"><button class="editWidget" data-toggle="modal" data-target="#updateWidgetModal"><i class="fa fa-pencil" aria-hidden="true"></i></button><button class="deleteWidget"><i class="fa fa-trash-o" aria-hidden="true"></i></button></div></div>' + chartElm + '</div></div>';
+        $(htmlContent).appendTo($('.grid'));
+        var grid = new Muuri('.grid', {
+            dragEnabled: true,
+        });
+        
+        chartRendering('myChart' + itemLength, $('#chooseChart').val(), splitDate($('#datarange').val()));
+        $('#name').val("");
+    });
+
+    // Delete chart
+    $(document).on('click', '.deleteWidget', function() {
+        $(this).parents('.item').remove();
+        var itemLength = $('.item').length;
+        if (itemLength > 0) {
+            $('.item').each(function() {
+                chartRendering($(this).find('canvas').attr('id'), $(this).data('type'), splitDate($(this).find('.hiddenDateField').text()));
+            })
+        }
+    });
+
+    // Edit chart
+    var editWidgetItem;
+    $(document).on('click', '.editWidget', function() {
+        $('#updateName').val($(this).parents('.item').find('h6').text());
+        editWidgetItem = $(this).parents('.item').data('id');
+        $('#datarangeUpdate').val($(this).parents('.item').find('.hiddenDateField').text());
+    });
+    $('#updateWidget').on('click', function() {
+        $('#item' + editWidgetItem + ' h6').text($('#updateName').val());
+        chartRendering('myChart' + editWidgetItem, $('#updateChart').val(), splitDate($('#datarangeUpdate').val()));
+    });
+    </script>
+</body>
+
+</html>
