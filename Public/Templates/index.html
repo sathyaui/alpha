@@ -19,14 +19,14 @@
 </head>
 
 <body>
-    <div class="buttonRow">
+    <header>
         <div class="container text-right">
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-light" data-toggle="modal" data-target="#widgetModal">
                 Add widget
             </button>
         </div>
-    </div>
+    </header>
     <div class="container">
         <div class="row justify-content-end range-hidden rangeWrapper">
             <div class="col-4">
@@ -47,82 +47,38 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="column-count">
-                    <div>
-                        <div class="modal-header">
+                    <div class="popContainerWrapper">
+                        <div class="modal-header row">
                             <h5 class="modal-title" id="widgetModalLabel">Widget</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form>
-                            <div class="form-group">
-                                <label for="name">Name</label>
-                                <input type="text" class="form-control" id="name" placeholder="Enter name">
+                        <div class="row mainPopupContainer">
+                            <div class="col-8">
+                                <div class="previewChartArea">
+                                    <canvas id="previewChart" width="300" height="300"></canvas>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="chooseChart">Choose type</label>
-                                <select class="form-control" id="chooseChart">
-                                    <option>bar</option>
-                                    <option>line</option>
-                                    <option>polarArea</option>
-                                    <option>radar</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="name">Name</label>
-                                <input type="text" class="form-control" id="name" placeholder="Enter name">
-                            </div>
-                            <div class="form-group">
-                                <label for="chooseChart">Choose type</label>
-                                <select class="form-control" id="chooseChart">
-                                    <option>bar</option>
-                                    <option>line</option>
-                                    <option>polarArea</option>
-                                    <option>radar</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="name">Name</label>
-                                <input type="text" class="form-control" id="name" placeholder="Enter name">
-                            </div>
-                            <div class="form-group">
-                                <label for="chooseChart">Choose type</label>
-                                <select class="form-control" id="chooseChart">
-                                    <option>bar</option>
-                                    <option>line</option>
-                                    <option>polarArea</option>
-                                    <option>radar</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="name">Name</label>
-                                <input type="text" class="form-control" id="name" placeholder="Enter name">
-                            </div>
-                            <div class="form-group">
-                                <label for="chooseChart">Choose type</label>
-                                <select class="form-control" id="chooseChart">
-                                    <option>bar</option>
-                                    <option>line</option>
-                                    <option>polarArea</option>
-                                    <option>radar</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="name">Name</label>
-                                <input type="text" class="form-control" id="name" placeholder="Enter name">
-                            </div>
-                            <div class="form-group">
-                                <label for="chooseChart">Choose type</label>
-                                <select class="form-control" id="chooseChart">
-                                    <option>bar</option>
-                                    <option>line</option>
-                                    <option>polarArea</option>
-                                    <option>radar</option>
-                                </select>
-                            </div>
-                        </form>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" data-dismiss="modal" id="appendData">Submit</button>
+                            <form class="col-4">
+                                <div class="form-group">
+                                    <label for="name">Name</label>
+                                    <input type="text" class="form-control" id="name" placeholder="Enter name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="chooseChart">Choose type</label>
+                                    <select class="form-control" id="chooseChart">
+                                        <option selected="selected">bar</option>
+                                        <option>line</option>
+                                        <option>polarArea</option>
+                                        <option>radar</option>
+                                        <option>bubble</option>
+                                    </select>
+                                </div>
+                                <div class="text-right">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="appendData">Submit</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -134,30 +90,37 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="column-count">
-                    <div>
-                        <div class="modal-header">
+                    <div class="popContainerWrapper">
+                        <div class="modal-header row">
                             <h5 class="modal-title" id="updateWidgetModalLabel">Widget</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form>
-                            <div class="form-group">
-                                <label for="updateName">Name</label>
-                                <input type="text" class="form-control" id="updateName" placeholder="Enter name">
+                        <div class="row mainPopupContainer">
+                            <div class="col-8">
+                                <div class="previewChartArea">
+                                    <canvas id="updatePreviewChart" width="300" height="300"></canvas>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="updateChart">Choose type</label>
-                                <select class="form-control" id="updateChart">
-                                    <option>bar</option>
-                                    <option>line</option>
-                                    <option>polarArea</option>
-                                    <option>radar</option>
-                                </select>
-                            </div>
-                        </form>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" data-dismiss="modal" id="updateWidget">Update</button>
+                            <form class="col-4">
+                                <div class="form-group">
+                                    <label for="updateName">Name</label>
+                                    <input type="text" class="form-control" id="updateName" placeholder="Enter name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="updateChart">Choose type</label>
+                                    <select class="form-control" id="updateChart">
+                                        <option>bar</option>
+                                        <option>line</option>
+                                        <option>polarArea</option>
+                                        <option>radar</option>
+                                    </select>
+                                </div>
+                                <div class="text-right">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="updateWidget">Update</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>

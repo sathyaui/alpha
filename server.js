@@ -5,7 +5,7 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 import jwt from 'express-jwt';
 import logger from './Config/Logger';
-import db from './config/DatabaseConfig';
+//import db from './config/DatabaseConfig';
 import Props from'./Util/api-properties';
 import fs from 'fs';
 

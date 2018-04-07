@@ -2,22 +2,32 @@ var allItems = [
     {
         url:[10, 15, 22, 12],
         keyword:['a', 'b', 'c', 'd'],
-        createdAt:"03/19/2018"
+        createdAt:"03/1/2018"
+    },
+    {
+        url:[15, 19, 23, 12],
+        keyword:['a', 'b', 'c', 'd'],
+        createdAt:"03/28/2018"
     },
     {
         url:[10, 19, 2, 12],
         keyword:['a', 'b', 'c', 'd'],
-        createdAt:"03/21/2018"
+        createdAt:"04/21/2018"
     },
     {
         url:[10, 15, 22],
         keyword:['a', 'b', 'c', 'd'],
-        createdAt:"03/22/2018"
+        createdAt:"05/22/2018"
     }
 ];
 var dateObject = {
     startDate:new Date('03/19/2018').getTime(),
-    endDate:new Date('03/25/2018').getTime()
+    endDate:new Date('04/25/2018').getTime()
+};
+
+var currentWeek = {
+    startDate:new Date('03/19/2018').getTime(),
+    endDate:new Date('04/25/2018').getTime()
 };
 $('input[name="daterange"]').daterangepicker();
 $('input[name="daterange"]').on('apply.daterangepicker', function(ev, picker) {
@@ -43,11 +53,10 @@ var options = {
     }
 };
 
-$('.column-count').each(function(){
-    var totalLength = $(this).find('.form-group').length;
-    console.log(totalLength);
-    $(this).find('form').css('width', 300*(Math.ceil(totalLength/5)));
-});
+// $('.column-count').each(function(){
+//     var totalLength = $(this).find('.form-group').length;
+//     $(this).find('form').css('width', 300*(Math.ceil(totalLength/5)));
+// });
 
 var styleOptions = {
     label: 'Total leads',
@@ -108,6 +117,10 @@ function splitDate(dateVal) {
     };
     return dateObject;
 }
+chartRendering('previewChart', $('#chooseChart').val(), currentWeek);
+$('#chooseChart').on('change', function(e){
+    chartRendering('previewChart', e.target.value, currentWeek);
+});
 var grid;
 $('#appendData').on('click', function() {
     var itemLength = $('.item').length;
@@ -145,8 +158,12 @@ var editWidgetItem;
 $(document).on('click', '.editWidget', function() {
     $('#updateName').val($(this).parents('.item').find('h6').text());
     editWidgetItem = $(this).parents('.item').data('id');
+    chartRendering('updatePreviewChart', $('#updateChart').val(), dateObject);
+});
+$('#updateChart').on('change', function(e){
+    chartRendering('updatePreviewChart', e.target.value, dateObject);
 });
 $('#updateWidget').on('click', function() {
     $('#item' + editWidgetItem + ' h6').text($('#updateName').val());
-    chartRendering('myChart' + editWidgetItem, $('#updateChart').val());
+    chartRendering('myChart' + editWidgetItem, $('#updateChart').val(), dateObject);
 });

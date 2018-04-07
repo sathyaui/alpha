@@ -1,5 +1,5 @@
 body {
-    padding: 30px 0px;
+    padding:0px;
     font-family: 'Titillium Web', sans-serif;
     font-size: 14px;
     line-height: 1.1456;
@@ -29,7 +29,7 @@ body {
 }
 
 .chartHeader {
-    background-color: #a5a5cc;
+    background-color: #545151;
     color: white;
     padding: 10px 5px;
     border-bottom: 1px solid #f9f5f5;
@@ -67,13 +67,24 @@ body {
     visibility: hidden;
 }
 
-.buttonRow {
+header {
+	background-color: #545151;
     margin-bottom: 20px;
-    padding-bottom: 20px;
+    padding: 20px 0px;
     border-bottom: 1px solid #f9f5f5;
+}
+.btn {
+	background-color: #545151;
+}
+.btn-light {
+	background-color: white;
+}
+.cancelBtn {
+	color: white;
 }
 button:focus {
     outline: none;
+    box-shadow:none !important;
 }
 .hiddenDateField {
     opacity: 0;
@@ -95,14 +106,7 @@ button:focus {
     display: inline-block;
 }
 .column-count form {
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-flex-flow: wrap column;
-    flex-flow: wrap column;
-    max-height: 450px; 
     margin: 0px;
-    padding: 20px 0px;
 }
 .form-group:last-child {
     margin-bottom: 0px;
@@ -113,8 +117,7 @@ button:focus {
     font-weight: 600;
 }
 .column-count .form-group {
-    padding: 0 15px;
-    width: 300px;
+    width: 100%;
 }
 .modal-dialog {
     max-width: initial;
@@ -141,6 +144,20 @@ button:focus {
 .modal-header .close {
     padding: 5px;
     margin: -10px -5px 0px;
+}
+.popContainerWrapper {
+	margin: 0 auto;
+	padding: 0 15px;
+	width: 900px;
+}
+.mainPopupContainer {
+	padding: 20px 0px;
+}
+.previewChartArea {
+	width: 300px;
+	height: 400px;
+	margin:0 auto;
+	padding: 50px 0px;
 }
 .rangeWrapper {
     margin-bottom: 20px;
